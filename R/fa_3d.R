@@ -29,21 +29,21 @@ plot_fa_3d <- function(x, dim = 1:3, grps = NULL, colors = rainbow(length(grps))
   }
 
   if (inherits(x, "MCA") || inherits(x, "PCA")) {
-    my.coord.ind <- x$ind$coord
-    my.coord.var <- x$var$coord
+    my.coord.row <- x$ind$coord
+    my.coord.col <- x$var$coord
   } else if (inherits(x, "CA")) {
-    my.coord.ind <- x$row$coord
-    my.coord.var <- x$col$coord
+    my.coord.row <- x$row$coord
+    my.coord.col <- x$col$coord
   } else {
     stop("Analysis not supported.")
   }
 
   if (is.null(grps)) {
-    grps <- list(row.names(my.coord.ind))
+    grps <- list(row.names(my.coord.row))
     colors <- rainbow(1)
   }
 
-  if (any(ncol(my.coord.ind) < dim)) {
+  if (any(ncol(my.coord.row) < dim)) {
     stop("Undefined dimension selected.")
   }
 
@@ -51,41 +51,42 @@ plot_fa_3d <- function(x, dim = 1:3, grps = NULL, colors = rainbow(length(grps))
   my.x.dim <- dim[1]
   my.y.dim <- dim[2]
   my.z.dim <- dim[3]
-  my.x.lim <- c(min(my.coord.ind[, my.x.dim]), max(my.coord.ind[, my.x.dim]))
-  my.y.lim <- c(min(my.coord.ind[, my.y.dim]), max(my.coord.ind[, my.y.dim]))
-  my.z.lim <- c(min(my.coord.ind[, my.z.dim]), max(my.coord.ind[, my.z.dim]))
+  my.x.lim <- c(min(my.coord.row[, my.x.dim]), max(my.coord.row[, my.x.dim]))
+  my.y.lim <- c(min(my.coord.row[, my.y.dim]), max(my.coord.row[, my.y.dim]))
+  my.z.lim <- c(min(my.coord.row[, my.z.dim]), max(my.coord.row[, my.z.dim]))
 
   # plot rows
   for (i in 1:length(grps)) {
     if (i == 1) {
-      rgl::plot3d(x = my.coord.ind[grps[[i]], my.x.dim],
-                  y = my.coord.ind[grps[[i]], my.y.dim],
-                  z = my.coord.ind[grps[[i]], my.z.dim],
-                  xlab = colnames(my.coord.ind)[my.x.dim],
-                  ylab = colnames(my.coord.ind)[my.y.dim],
-                  zlab = colnames(my.coord.ind)[my.z.dim],
+      rgl::plot3d(x = my.coord.row[grps[[i]], my.x.dim],
+                  y = my.coord.row[grps[[i]], my.y.dim],
+                  z = my.coord.row[grps[[i]], my.z.dim],
+                  xlab = colnames(my.coord.row)[my.x.dim],
+                  ylab = colnames(my.coord.row)[my.y.dim],
+                  zlab = colnames(my.coord.row)[my.z.dim],
                   xlim = my.x.lim, ylim = my.y.lim, zlim = my.z.lim,
                   col = colors[i],
                   main = "rows")
     } else {
-      rgl::points3d(my.coord.ind[grps[[i]], my.x.dim],
-                    my.coord.ind[grps[[i]], my.y.dim],
-                    my.coord.ind[grps[[i]], my.z.dim],
+      rgl::points3d(my.coord.row[grps[[i]], my.x.dim],
+                    my.coord.row[grps[[i]], my.y.dim],
+                    my.coord.row[grps[[i]], my.z.dim],
                     col = colors[i])
     }
   }
 
   # plot cols
+  # TODO plot sphere when PCA
   rgl::open3d()
-  rgl::plot3d(x = my.coord.var[, my.x.dim],
-              y = my.coord.var[, my.y.dim],
-              z = my.coord.var[, my.z.dim],
-              xlab = colnames(my.coord.var)[my.x.dim],
-              ylab = colnames(my.coord.var)[my.y.dim],
-              zlab = colnames(my.coord.var)[my.z.dim],
+  rgl::plot3d(x = my.coord.col[, my.x.dim],
+              y = my.coord.col[, my.y.dim],
+              z = my.coord.col[, my.z.dim],
+              xlab = colnames(my.coord.col)[my.x.dim],
+              ylab = colnames(my.coord.col)[my.y.dim],
+              zlab = colnames(my.coord.col)[my.z.dim],
               main = "cols")
-  rgl::text3d(x = my.coord.var[, my.x.dim],
-              y = my.coord.var[, my.y.dim],
-              z = my.coord.var[, my.z.dim],
-              rownames(my.coord.var))
+  rgl::text3d(x = my.coord.col[, my.x.dim],
+              y = my.coord.col[, my.y.dim],
+              z = my.coord.col[, my.z.dim],
+              rownames(my.coord.col))
 }
