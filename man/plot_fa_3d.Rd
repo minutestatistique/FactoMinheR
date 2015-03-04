@@ -4,8 +4,7 @@
 \alias{plot_fa_3d}
 \title{A 3D plot function for Factorial Analyses result}
 \usage{
-plot_fa_3d(x, dim = 1:3, grps = list(rownames(x)),
-  colors = rainbow(length(grps)))
+plot_fa_3d(x, dim = 1:3, grps = NULL, colors = rainbow(length(grps)))
 }
 \arguments{
 \item{x}{an object of class CA, MCA or PCA.}
