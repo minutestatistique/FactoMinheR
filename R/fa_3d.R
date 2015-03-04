@@ -14,7 +14,7 @@
 #' data(decathlon)
 #' res.pca = PCA(decathlon[, 1:10], scale.unit = TRUE, ncp = 5, graph = TRUE)
 #' plot_fa_3d(res.pca)
-plot_fa_3d <- function(x, dim = 1:3, grps = list(rownames(x)), colors = rainbow(length(grps))) {
+plot_fa_3d <- function(x, dim = 1:3, grps = list(row.names(x)), colors = rainbow(length(grps))) {
   if (!requireNamespace("rgl", quietly = TRUE)) {
     stop("rgl needed for this function to work. Please install it.",
          call. = FALSE)
