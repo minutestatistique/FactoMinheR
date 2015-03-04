@@ -1,0 +1,14 @@
+Package: FactoMinheR
+Type: Package
+Title: 3D plot extension for the FactoMineR package
+Version: 0.1
+Date: 2015-03-04
+Author: Minh-Nhut HUYNH
+Maintainer: Minh-Nhut HUYNH <minh@adikteev.com>
+Description: 3D visualization of Factorial Analyses results (with the FactoMineR package)
+License: What license is it under? -> real question
+LazyData: TRUE
+URL: http://github.com/minutestatistique/FactoMinheR
+BugReports: http://github.com/minutestatistique/FactoMinheR/issues
+Imports: rgl
+Suggests: FactoMineR
