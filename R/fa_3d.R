@@ -93,6 +93,9 @@ plot_fa_3d <- function(x, dim = 1:3, grps = NULL, colors = rainbow(length(grps))
                 main = my.main.col)
     rgl::spheres3d(x = 0, y = 0, z = 0, radius = 1, color = "grey",
                    alpha = alpha, smooth = TRUE)
+    rgl::segments3d(x = as.vector(t(cbind(rep(0, nrow(my.coord.col)), my.coord.col[, my.x.dim]))),
+                    y = as.vector(t(cbind(rep(0, nrow(my.coord.col)), my.coord.col[, my.y.dim]))),
+                    z = as.vector(t(cbind(rep(0, nrow(my.coord.col)), my.coord.col[, my.z.dim]))))
   } else {
     rgl::plot3d(x = my.coord.col[, my.x.dim],
                 y = my.coord.col[, my.y.dim],
