@@ -4,7 +4,8 @@
 \alias{plot_fa_3d}
 \title{A 3D plot function for Factorial Analyses result}
 \usage{
-plot_fa_3d(x, dim = 1:3, grps = NULL, colors = rainbow(length(grps)))
+plot_fa_3d(x, dim = 1:3, grps = NULL, colors = rainbow(length(grps)),
+  alpha = 0.1)
 }
 \arguments{
 \item{x}{an object of class CA, MCA or PCA.}
@@ -14,6 +15,8 @@ plot_fa_3d(x, dim = 1:3, grps = NULL, colors = rainbow(length(grps)))
 \item{grps}{list of rownames of different group(s).}
 
 \item{colors}{colors of different group(s).}
+
+\item{alpha}{transparence for the PCA variables sphere.}
 }
 \value{
 Nothing. Used for side-effects.
