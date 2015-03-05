@@ -6,7 +6,7 @@
 #' @param dim the three dimensions to plot.
 #' @param grps list of rownames of different group(s).
 #' @param colors colors of different group(s).
-#' @param alpha transparence for the PCA variables sphere.
+#' @param alpha sphere transparence for the PCA variables plot.
 #' @return Nothing. Used for side-effects.
 #' @keywords 3D
 #' @export

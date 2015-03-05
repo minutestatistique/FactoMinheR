@@ -16,7 +16,7 @@ plot_fa_3d(x, dim = 1:3, grps = NULL, colors = rainbow(length(grps)),
 
 \item{colors}{colors of different group(s).}
 
-\item{alpha}{transparence for the PCA variables sphere.}
+\item{alpha}{sphere transparence for the PCA variables plot.}
 }
 \value{
 Nothing. Used for side-effects.
